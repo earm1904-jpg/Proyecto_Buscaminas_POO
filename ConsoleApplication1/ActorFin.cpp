@@ -1,18 +1,25 @@
 #include "../UNIR-2D/UNIR-2D.h"
 #include "ActorFin.h"
 
+// Estas variables constantes se utilizan para definir la posición y el tamaño del botón "JUGAR DE NUEVO" en la pantalla de fin del juego.
+
 static const float FIN_BTN_X = 130.0f;
 static const float FIN_BTN_Y = 420.0f;
 static const float FIN_BTN_W = 240.0f;
 static const float FIN_BTN_H =  45.0f;
 
+// El constructor de ActorFin recibe un parámetro resultado que indica el estado final de la partida (ganado o perdido) y lo almacena en el atributo m_resultado.
 ActorFin::ActorFin(EstadoPartida resultado) : m_resultado(resultado) {
 }
 
+// Reiniciar devuelve el valor del atributo m_reiniciar, que indica si el jugador ha hecho clic en el botón para reiniciar el juego.
 bool ActorFin::reiniciar() const {
     return m_reiniciar;
 }
 
+// Inicia crea los elementos gráficos de la pantalla de fin del juego, como el fondo, el texto para mostrar el resultado de la partida, 
+// un mensaje adicional y el botón para jugar de nuevo. El color del fondo y el texto del resultado se ajustan según si el jugador ha ganado o perdido. 
+// El método actualiza() detecta el clic del ratón en el botón "JUGAR DE NUEVO" y establece el estado reiniciar para iniciar una nueva partida.
 void ActorFin::inicia() {
     ponPosicion(unir2d::Vector(0, 0));
 
@@ -79,6 +86,8 @@ void ActorFin::inicia() {
     agregaDibujo(m_txtBoton);
 }
 
+
+// Termina elimina los elementos gráficos de la pantalla de fin del juego y libera la memoria asignada a ellos.
 void ActorFin::termina() {
     if (m_fondo)         { extraeDibujo(m_fondo);         delete m_fondo;         m_fondo         = nullptr; }
     if (m_txtResultado)  { extraeDibujo(m_txtResultado);  delete m_txtResultado;  m_txtResultado  = nullptr; }
@@ -87,6 +96,7 @@ void ActorFin::termina() {
     if (m_txtBoton)      { extraeDibujo(m_txtBoton);      delete m_txtBoton;      m_txtBoton      = nullptr; }
 }
 
+// actualiza detecta el clic del ratón en el botón "JUGAR DE NUEVO" y establece el estado reiniciar para iniciar una nueva partida.
 void ActorFin::actualiza(double /*tiempo_seg*/) {
     if (unir2d::Raton::pulsando(unir2d::BotonRaton::izquierda)) {
         unir2d::Vector pos = unir2d::Raton::posicion();

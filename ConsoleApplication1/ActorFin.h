@@ -1,8 +1,10 @@
-#pragma once
+  #pragma once
 
 #include "../UNIR-2D/UNIR-2D.h"
 #include  "Tablero.h"
-//#include "../UNIR-2D/Dibujable.h"
+
+// ActorFin se encarga de mostrar la pantalla de fin del juego, con el resultado de la partida (ganado o perdido) y un botón para reiniciar el juego. 
+// El jugador debe hacer clic en el botón "REINICIAR" para indicar que desea comenzar una nueva partida. El método actualiza() detecta el clic del ratón en el botón y establece el estado reiniciar para iniciar una nueva partida.
 
 class ActorFin : public unir2d::ActorBase {
 public:
